@@ -8,6 +8,21 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  // Optimize for Render deployment
+  experimental: {
+    // Reduce memory usage
+    workerThreads: false,
+    cpus: 1,
+  },
+  // Increase timeout for build
+  staticPageGenerationTimeout: 180,
+  // Reduce build parallelization to avoid timeout
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.parallelism = 1
+    }
+    return config
+  },
 }
 
 module.exports = nextConfig

@@ -10,6 +10,13 @@
     "lint": "next lint",
     "postinstall": "prisma generate"
   },
+  "buildOptions": {
+    "maxWorkers": 2,
+    "experimental": {
+      "workerThreads": false,
+      "cpus": 1
+    }
+  },
   "dependencies": {
     "next": "^14.2.0",
     "react": "^18.3.0",
