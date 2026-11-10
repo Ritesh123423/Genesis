@@ -29,11 +29,10 @@ export default function Footer() {
               <Link href="/" className="inline-block mb-6 group">
                 <div className="flex items-center space-x-3">
                   <div className="relative w-10 h-10 transition-transform group-hover:scale-105">
-                    <Image
-                      src="/images/genesis-logo.png"
+                    <img
+                      src="/images/genesis-logo.webp"
                       alt="GENESIS"
-                      fill
-                      className="object-contain"
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <span className="font-bold text-xl tracking-tight text-white">

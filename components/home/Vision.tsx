@@ -24,7 +24,7 @@ const visionPoints = [
   {
     icon: Zap,
     title: 'Future-Ready',
-    description: 'Building for tomorrow's challenges today',
+    description: 'Building for tomorrow challenges today',
   },
 ]
 

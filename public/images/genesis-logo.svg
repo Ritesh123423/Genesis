@@ -1,0 +1,30 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Temporary SVG Logo - Replace with actual PNG logo -->
+  <rect width="400" height="400" fill="transparent"/>
+  
+  <!-- G Letter Shape -->
+  <path d="M200 80 C140 80 90 130 90 200 C90 270 140 320 200 320 C240 320 275 300 295 268 L260 248 C248 268 226 280 200 280 C165 280 135 250 135 200 C135 150 165 120 200 120 C226 120 248 132 260 152 L295 132 C275 100 240 80 200 80 Z" fill="url(#logoGradient)"/>
+  
+  <!-- Circuit Lines -->
+  <line x1="310" y1="140" x2="350" y2="120" stroke="url(#lineGradient)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="350" cy="120" r="6" fill="#3977B8"/>
+  
+  <line x1="310" y1="200" x2="360" y2="200" stroke="url(#lineGradient)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="360" cy="200" r="6" fill="#3977B8"/>
+  
+  <line x1="310" y1="260" x2="350" y2="280" stroke="url(#lineGradient)" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="350" cy="280" r="6" fill="#3977B8"/>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="logoGradient" x1="90" y1="80" x2="295" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3977B8"/>
+      <stop offset="50%" stop-color="#315A83"/>
+      <stop offset="100%" stop-color="#3977B8"/>
+    </linearGradient>
+    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#315A83"/>
+      <stop offset="100%" stop-color="#3977B8"/>
+    </linearGradient>
+  </defs>
+</svg>

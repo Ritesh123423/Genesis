@@ -53,12 +53,10 @@ export default function Navigation() {
           <Link href="/" className="relative z-10 group">
             <div className="flex items-center space-x-3">
               <div className="relative w-10 h-10 lg:w-12 lg:h-12 transition-transform group-hover:scale-105">
-                <Image
-                  src="/images/genesis-logo.png"
+                <img
+                  src="/images/genesis-logo.webp"
                   alt="GENESIS"
-                  fill
-                  className="object-contain"
-                  priority
+                  className="w-full h-full object-contain"
                 />
               </div>
               <span className="font-bold text-xl lg:text-2xl tracking-tight text-white">
