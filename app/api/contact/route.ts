@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { prisma } from '@/lib/db'
+import { sendContactEmail } from '@/lib/email'
 import { ENQUIRY_TYPES } from '@/lib/constants'
 
 // Rate limiting map (in-memory, suitable for single-instance deployments)
@@ -105,9 +106,23 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // TODO: Send email notification (configure SMTP settings in .env)
-    // This would integrate with nodemailer or similar service
-    // For now, we're just storing in the database
+    // Send email notification
+    if (process.env.RESEND_API_KEY) {
+      try {
+        await sendContactEmail({
+          fullName: validatedData.fullName,
+          email: validatedData.email,
+          organisation: validatedData.organisation,
+          subject: validatedData.subject,
+          enquiryType: validatedData.enquiryType,
+          message: validatedData.message,
+        })
+      } catch (emailError) {
+        // Log error but don't fail the request
+        console.error('Email notification failed:', emailError)
+        // Enquiry is still saved to database
+      }
+    }
 
     return NextResponse.json(
       {
