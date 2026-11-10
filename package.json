@@ -5,7 +5,7 @@
   "description": "GENESIS - Intelligence. Automation. Transformation. Premium corporate website for GENESIS technology brand.",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && prisma db push --accept-data-loss && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
