@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-manrope: 'Manrope', system-ui, sans-serif;
+  }
+  
+  * {
+    @apply border-genesis-slate/20;
+  }
+  
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-genesis-navy text-genesis-offwhite antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  h4 {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  p {
+    @apply text-base sm:text-lg leading-relaxed;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-genesis-midnight;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-genesis-steel rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-genesis-royal;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-genesis-royal via-genesis-steel to-genesis-silver bg-clip-text text-transparent;
+  }
+
+  .card-shine {
+    @apply relative overflow-hidden;
+  }
+
+  .card-shine::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-full opacity-0 transition-opacity duration-500;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(57, 119, 184, 0.1),
+      transparent
+    );
+  }
+
+  .card-shine:hover::before {
+    @apply opacity-100;
+    animation: shine 1.5s ease-in-out;
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Loading state */
+.loading {
+  @apply animate-pulse;
+}
+
+/* Focus visible styles */
+*:focus-visible {
+  @apply outline-none ring-2 ring-genesis-royal ring-offset-2 ring-offset-genesis-navy;
+}
+
+/* Selection color */
+::selection {
+  @apply bg-genesis-royal/30 text-genesis-offwhite;
+}
