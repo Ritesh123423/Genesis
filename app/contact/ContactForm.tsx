@@ -33,6 +33,11 @@ export default function ContactForm() {
       const data = await response.json()
 
       if (!response.ok) {
+        // Handle validation errors with specific messages
+        if (data.details && Array.isArray(data.details)) {
+          const fieldErrors = data.details.map((d: any) => `${d.field}: ${d.message}`).join(', ')
+          throw new Error(fieldErrors)
+        }
         throw new Error(data.error || 'Something went wrong')
       }
 

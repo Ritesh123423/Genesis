@@ -60,24 +60,50 @@ export async function POST(request: NextRequest) {
 
     // Parse and validate request body
     const body = await request.json()
-    const validatedData = contactSchema.parse(body)
+    
+    // Validate with Zod
+    const validationResult = contactSchema.safeParse(body)
+    
+    if (!validationResult.success) {
+      return NextResponse.json(
+        {
+          error: 'Validation failed',
+          details: validationResult.error.errors.map((e) => ({
+            field: e.path.join('.'),
+            message: e.message,
+          })),
+        },
+        { status: 400 }
+      )
+    }
+    
+    const validatedData = validationResult.data
 
     // Get user agent for logging
     const userAgent = request.headers.get('user-agent') || 'unknown'
 
-    // Save to database
-    const enquiry = await prisma.contactEnquiry.create({
-      data: {
-        fullName: validatedData.fullName,
-        email: validatedData.email,
-        organisation: validatedData.organisation || null,
-        subject: validatedData.subject,
-        enquiryType: validatedData.enquiryType,
-        message: validatedData.message,
-        ipAddress: ip,
-        userAgent: userAgent,
-      },
-    })
+    // Save to database (with error handling)
+    let enquiry
+    try {
+      enquiry = await prisma.contactEnquiry.create({
+        data: {
+          fullName: validatedData.fullName,
+          email: validatedData.email,
+          organisation: validatedData.organisation || null,
+          subject: validatedData.subject,
+          enquiryType: validatedData.enquiryType,
+          message: validatedData.message,
+          ipAddress: ip,
+          userAgent: userAgent,
+        },
+      })
+    } catch (dbError) {
+      console.error('Database error:', dbError)
+      return NextResponse.json(
+        { error: 'Failed to save enquiry. Please check database connection.' },
+        { status: 503 }
+      )
+    }
 
     // TODO: Send email notification (configure SMTP settings in .env)
     // This would integrate with nodemailer or similar service
